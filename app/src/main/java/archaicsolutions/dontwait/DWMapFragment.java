@@ -9,6 +9,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -16,7 +17,7 @@ import com.google.android.gms.maps.model.Marker;
 /**
  * Created by Kunal on 12/6/15.
  */
-public class MapFragment extends com.google.android.gms.maps.MapFragment implements GoogleApiClient.ConnectionCallbacks,
+public class DWMapFragment extends MapFragment implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         GoogleMap.OnInfoWindowClickListener,
         GoogleMap.OnMapLongClickListener,
@@ -74,8 +75,8 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         mCurrentLocation = LocationServices
                 .FusedLocationApi
                 .getLastLocation( mGoogleApiClient );
-
-        initCamera(mCurrentLocation);
+        if(mCurrentLocation != null)
+            initCamera(mCurrentLocation);
     }
 
     private void initCamera( Location location ) {
